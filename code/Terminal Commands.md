@@ -30,3 +30,11 @@ docker volume rm `docker volume ls -qf dangling=true`
 docker network remove `docker network ls -q`
 docker-compose down
 ```
+
+```console
+running=$(docker ps -q)
+if ! [ -z ${running} ]; then
+    docker stop ${running}
+fi
+docker system prune -f --volumes --all
+```
